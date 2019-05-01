@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess.cyan_potion</groupId>
     <artifactId>SDL_GameControllerDB_Util</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <description>a wrapper for SDL_GameControllerDB
@@ -32,6 +32,14 @@
         <tag>${project.version}</tag>
     </scm>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.lwjgl</groupId>
+            <artifactId>lwjgl</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+    </dependencies>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <encoding>UTF-8</encoding>
@@ -39,6 +47,15 @@
         <maven.compiler.source>12</maven.compiler.source>
         <maven.compiler.target>12</maven.compiler.target>
     </properties>
+
+    <!--    <dependencies>-->
+    <!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.google.guava/guava &ndash;&gt;-->
+    <!--        <dependency>-->
+    <!--            <groupId>com.google.guava</groupId>-->
+    <!--            <artifactId>guava</artifactId>-->
+    <!--            <version>27.1-jre</version>-->
+    <!--        </dependency>-->
+    <!--    </dependencies>-->
 
     <build>
         <resources>
