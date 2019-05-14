@@ -34,7 +34,6 @@ public class SDL_GameControllerDB_Util {
             SDL_GameControllerDB_ByteBuffer.put(SDL_GameControllerDB_String.getBytes());
             SDL_GameControllerDB_ByteBuffer.put((byte) (0));
             SDL_GameControllerDB_ByteBuffer.flip();
-//            SDL_GameControllerDB_ByteBuffer.slice();
         }
         return SDL_GameControllerDB_ByteBuffer;
     }
@@ -53,7 +52,8 @@ public class SDL_GameControllerDB_Util {
     private static String loadFile(String resourceFilePath) {
         String res = "";
         try (
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getURL(resourceFilePath).openStream()));
+                BufferedReader bufferedReader =
+                        new BufferedReader(new InputStreamReader(getURL(resourceFilePath).openStream()));
         ) {
             final StringBuffer sb = new StringBuffer();
             String tmp;
@@ -117,7 +117,8 @@ public class SDL_GameControllerDB_Util {
                     break;
                 }
                 //                //                    if (buffer.remaining() == 0) {
-                //                //                        buffer = resizeBuffer(buffer, buffer.capacity() * 3 / 2); // 50%
+                //                //                        buffer = resizeBuffer(buffer, buffer.capacity() * 3 / 2);
+                // 50%
                 //                //                    }
             }
             success = true;

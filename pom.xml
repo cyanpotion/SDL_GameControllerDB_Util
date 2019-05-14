@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess.cyan_potion</groupId>
     <artifactId>SDL_GameControllerDB_Util</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <description>a wrapper for SDL_GameControllerDB
@@ -36,7 +36,7 @@
         <dependency>
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl</artifactId>
-            <version>3.2.1</version>
+            <version>3.2.2</version>
         </dependency>
     </dependencies>
 
@@ -98,7 +98,8 @@
                     <charset>UTF-8</charset>
                     <encoding>UTF-8</encoding>
                     <docencoding>UTF-8</docencoding>
-                    <additionalJOption>-J-Duser.language=en_US</additionalJOption>
+                    <additionalJOption>-J-Duser.language=en_US
+                    </additionalJOption>
                 </configuration>
 
                 <executions>
@@ -169,7 +170,8 @@
         <repository>
             <id>ossrh</id>
             <name>OSS Staging Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/
+            </url>
         </repository>
         <!--        <repository>-->
         <!--            <id>com.xenoamess</id>-->
