@@ -53,7 +53,7 @@ public class SDL_GameControllerDB_Util {
         String res = "";
         try (
                 BufferedReader bufferedReader =
-                        new BufferedReader(new InputStreamReader(getURL(resourceFilePath).openStream()));
+                        new BufferedReader(new InputStreamReader(getURL(resourceFilePath).openStream()))
         ) {
             final StringBuffer sb = new StringBuffer();
             String tmp;
@@ -88,7 +88,6 @@ public class SDL_GameControllerDB_Util {
             try (SeekableByteChannel fc = Files.newByteChannel(path)) {
                 buffer = BufferUtils.createByteBuffer((int) fc.size() + 1);
                 while (fc.read(buffer) != -1) {
-                    ;
                 }
                 success = true;
             } catch (IOException e) {
