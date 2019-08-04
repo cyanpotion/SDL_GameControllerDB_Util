@@ -21,3 +21,5 @@ get gamecontrollerdb.txt's content as a ByteBuffer:
 ```
 SDL_GameControllerDB_Util.getSDL_GameControllerDB_ByteBuffer()
 ```
+
+notice that due to some reason, if you want to build this by yourself(but not getting it from center), you must mvn clean every time before you build.
