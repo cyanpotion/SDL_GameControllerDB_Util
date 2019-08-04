@@ -1,10 +1,9 @@
 package com.xenoamess.cyan_potion;
 
-import org.lwjgl.BufferUtils;
-
 import java.io.*;
 import java.net.URL;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.SeekableByteChannel;
@@ -30,7 +29,7 @@ public class SDL_GameControllerDB_Util {
     public static ByteBuffer getSDL_GameControllerDB_ByteBuffer() {
         if (SDL_GameControllerDB_ByteBuffer == null) {
             getSDL_GameControllerDB_String();
-            SDL_GameControllerDB_ByteBuffer = BufferUtils.createByteBuffer(SDL_GameControllerDB_String.length() + 4);
+            SDL_GameControllerDB_ByteBuffer = createByteBuffer(SDL_GameControllerDB_String.length() + 4);
             SDL_GameControllerDB_ByteBuffer.put(SDL_GameControllerDB_String.getBytes());
             SDL_GameControllerDB_ByteBuffer.put((byte) (0));
             SDL_GameControllerDB_ByteBuffer.flip();
@@ -86,7 +85,7 @@ public class SDL_GameControllerDB_Util {
         Path path = Paths.get(absolutePath);
         if (Files.isReadable(path)) {
             try (SeekableByteChannel fc = Files.newByteChannel(path)) {
-                buffer = BufferUtils.createByteBuffer((int) fc.size() + 1);
+                buffer = createByteBuffer((int) fc.size() + 1);
                 while (fc.read(buffer) != -1) {
                 }
                 success = true;
@@ -108,7 +107,7 @@ public class SDL_GameControllerDB_Util {
                 InputStream source = new FileInputStream(resourceFile);
                 ReadableByteChannel rbc = Channels.newChannel(source)
         ) {
-            buffer = BufferUtils.createByteBuffer((int) resourceFile.length() + 1);
+            buffer = createByteBuffer((int) resourceFile.length() + 1);
 
             while (true) {
                 int bytes = rbc.read(buffer);
@@ -130,4 +129,14 @@ public class SDL_GameControllerDB_Util {
         return buffer.slice();
     }
 
+    /**
+     * Special Notice: this function is copied from LWJGL.
+     * Allocates a direct native-ordered bytebuffer with the specified capacity.
+     *
+     * @param capacity The capacity, in bytes
+     * @return a ByteBuffer
+     */
+    private static ByteBuffer createByteBuffer(int capacity) {
+        return ByteBuffer.allocateDirect(capacity).order(ByteOrder.nativeOrder());
+    }
 }
