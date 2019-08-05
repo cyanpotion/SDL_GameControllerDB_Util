@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess.cyan_potion</groupId>
     <artifactId>SDL_GameControllerDB_Util</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <description>a wrapper for SDL_GameControllerDB
@@ -214,7 +214,6 @@
                             <outputDirectory>
                                 ${project.build.directory}/classes
                             </outputDirectory>
-                            <overwrite>true</overwrite>
                         </configuration>
                     </execution>
                 </executions>
