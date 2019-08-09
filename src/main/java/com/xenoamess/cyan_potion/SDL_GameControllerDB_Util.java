@@ -51,7 +51,7 @@ public class SDL_GameControllerDB_Util {
     public static File getSDL_GameControllerDB_TempFile() {
         File res = null;
         try {
-            Files.createTempFile(null, null).toAbsolutePath().toFile();
+            Files.createTempFile("SDL_GameControllerDB_Util_gamecontrollerdb", null).toAbsolutePath().toFile();
             try (FileWriter fileWriter = new FileWriter(res)) {
                 fileWriter.write(getSDL_GameControllerDB_String());
             }
