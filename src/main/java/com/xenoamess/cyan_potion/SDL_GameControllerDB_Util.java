@@ -19,6 +19,11 @@ public class SDL_GameControllerDB_Util {
     private static ByteBuffer SDL_GameControllerDB_ByteBuffer = null;
     public static final String SDL_GameControllerDB_FilePath = "/gamecontrollerdb.txt";
 
+    /**
+     * get gamecontrollerdb.txt's content as String
+     *
+     * @return gamecontrollerdb.txt's content as String
+     */
     public static String getSDL_GameControllerDB_String() {
         if (SDL_GameControllerDB_String == null) {
             SDL_GameControllerDB_String = loadFile(SDL_GameControllerDB_FilePath);
@@ -26,6 +31,11 @@ public class SDL_GameControllerDB_Util {
         return SDL_GameControllerDB_String;
     }
 
+    /**
+     * get gamecontrollerdb.txt's content as ByteBuffer
+     *
+     * @return gamecontrollerdb.txt's content as ByteBuffer
+     */
     public static ByteBuffer getSDL_GameControllerDB_ByteBuffer() {
         if (SDL_GameControllerDB_ByteBuffer == null) {
             getSDL_GameControllerDB_String();
@@ -35,6 +45,20 @@ public class SDL_GameControllerDB_Util {
             SDL_GameControllerDB_ByteBuffer.flip();
         }
         return SDL_GameControllerDB_ByteBuffer;
+    }
+
+    /**
+     * get gamecontrollerdb.txt's content and generate a temp file with it.
+     * notice that once you after you used it you'd better delete it.
+     *
+     * @return gamecontrollerdb.txt's content and generate a temp file with it.
+     */
+    public static File getSDL_GameControllerDB_TempFile() throws IOException, IllegalStateException {
+        File res = Files.createTempFile(null, null).toAbsolutePath().toFile();
+        try (FileWriter fileWriter = new FileWriter(res)) {
+            fileWriter.write(getSDL_GameControllerDB_String());
+        }
+        return res;
     }
 
     private static URL getURL(String resourceFilePath) {
