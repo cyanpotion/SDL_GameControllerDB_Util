@@ -8,7 +8,16 @@ I will build and deploy it every time when SDL_GameControllerDB updates, so if y
 
 You can just get the latest version of this library.
 
-That makes things far easier.
+That makes things far easier for java users.
+
+##gabomdq/SDL_GameControllerDB or p-groarke/SDL_GameControllerDB2?
+I will stay on gabomdq/SDL_GameControllerDB for a while.
+
+If there be soem strong reasons for moving to p-groarke/SDL_GameControllerDB2 then I will do.
+
+Otherwise let me just stay for a while.
+
+Right now I will just raise a medium version(1.1.\* to 1.2.\*) to memorise the interesting fight happened(happening) and do nothing else.
 
 #usage:
 
@@ -41,7 +50,7 @@ SDL_GameControllerDB_Util.getSDL_GameControllerDB_TempFile()
 you shall delete it after used.
 
 ##when building it yourself (not recommended)
-notice that due to some reason, if you want to build this by yourself(but not getting it from center), you must mvn clean every time before you build.
+notice that due to some reason, if you want to build this by yourself(but not getting it from center), you must \[mvn clean\] every time before you \[mvn build\].
 
 #meanings of version num of this library:
 
