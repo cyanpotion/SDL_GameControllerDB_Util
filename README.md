@@ -4,7 +4,7 @@
 
 A maven wrapper of SDL_GameControllerDB.
 
-I will build and deploy it every time when SDL_GameControllerDB updates, so if you use this you do not have to renew your gamecontrollerdb.txt everytime.
+I will build and deploy it at least every month to catch up SDL_GameControllerDB updates, so if you use this you do not have to renew your gamecontrollerdb.txt everytime.
 
 You can just get the latest version of this library.
 
