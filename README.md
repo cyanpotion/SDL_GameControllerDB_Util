@@ -26,7 +26,7 @@ Right now I will just raise a medium version(1.1.\* to 1.2.\*) to memorise the i
 <dependency>
     <groupId>com.xenoamess.cyan_potion</groupId>
     <artifactId>SDL_GameControllerDB_Util</artifactId>
-    <version>1.1.20190809</version>
+    <version>[1.1.0,)</version>
 </dependency>
 ```
 Or if you are using maven 2 you can just use RELEASE.
