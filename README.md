@@ -10,7 +10,7 @@ You can just get the latest version of this library.
 
 That makes things far easier for java users.
 
-##gabomdq/SDL_GameControllerDB or p-groarke/SDL_GameControllerDB2?
+## gabomdq/SDL_GameControllerDB or p-groarke/SDL_GameControllerDB2?
 I will stay on gabomdq/SDL_GameControllerDB for a while.
 
 If there be soem strong reasons for moving to p-groarke/SDL_GameControllerDB2 then I will do.
@@ -19,9 +19,9 @@ Otherwise let me just stay for a while.
 
 Right now I will just raise a medium version(1.1.\* to 1.2.\*) to memorise the interesting fight happened(happening) and do nothing else.
 
-#usage:
+# usage:
 
-##when adding to maven:
+## when adding to maven:
 ```
 <dependency>
     <groupId>com.xenoamess.cyan_potion</groupId>
@@ -31,7 +31,7 @@ Right now I will just raise a medium version(1.1.\* to 1.2.\*) to memorise the i
 ```
 Or if you are using maven 2 you can just use RELEASE.
 
-##when coding:
+## when coding:
 
 get gamecontrollerdb.txt's content as a String:
 ```
@@ -49,10 +49,10 @@ SDL_GameControllerDB_Util.getSDL_GameControllerDB_TempFile()
 * notice that this file will not be deleted automatically.
 you shall delete it after used.
 
-##when building it yourself (not recommended)
+## when building it yourself (not recommended)
 notice that due to some reason, if you want to build this by yourself(but not getting it from center), you must \[mvn clean\] every time before you \[mvn build\].
 
-#meanings of version num of this library:
+# meanings of version num of this library:
 
 We will choose 1.1.20190809 as an example.
 
