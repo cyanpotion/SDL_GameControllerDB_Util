@@ -1,10 +1,20 @@
 package com.xenoamess.cyan_potion;
 
-import java.io.*;
+import org.lwjgl.system.NativeType;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.file.Files;
+
+import static org.lwjgl.system.Checks.CHECKS;
+import static org.lwjgl.system.Checks.checkNT1;
+import static org.lwjgl.system.MemoryUtil.memAddress;
 
 /**
  * @author XenoAmess
@@ -59,6 +69,28 @@ public class SDL_GameControllerDB_Util {
             e.printStackTrace();
         }
         return res;
+    }
+
+    /**
+     * Adds the specified SDL_GameControllerDB gamepad mappings.
+     *
+     * <p>This function parses the specified ASCII encoded string and updates the internal list with latest version of <a target="_blank" href="https://github.com/gabomdq/SDL_GameControllerDB/blob/master/gamecontrollerdb.txt">gamecontrollerdb</a></p>
+     *
+     * <p>See <a target="_blank" href="http://www.glfw.org/docs/latest/input.html#gamepad_mapping">gamepad_mapping</a> for a description of the format.</p>
+     *
+     * <p>If there is already a gamepad mapping for a given GUID in the internal list, it will be replaced by the one passed to this function. If the library is
+     * terminated and re-initialized the internal list will revert to the built-in default.</p>
+     *
+     * <p>This function must only be called from the main thread.</p>
+     *
+     * <p>This function will not use internet, so don't be afraid.</p>
+     *
+     * @return {@code true}, or {@code false} if an error occurred
+     *
+     * @since version 3.3
+     */
+    public static boolean glfwUpdateGamepadMappings() {
+        return org.lwjgl.glfw.GLFW.glfwUpdateGamepadMappings(getSDL_GameControllerDB_ByteBuffer());
     }
 
     private static URL getURL(String resourceFilePath) {

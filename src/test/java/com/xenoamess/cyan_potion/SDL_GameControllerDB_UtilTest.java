@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.nio.ByteBuffer;
 
 import static com.xenoamess.cyan_potion.SDL_GameControllerDB_Util.getSDL_GameControllerDB_String;
+import static com.xenoamess.cyan_potion.SDL_GameControllerDB_Util.glfwUpdateGamepadMappings;
 import static org.lwjgl.glfw.GLFW.glfwInit;
 import static org.lwjgl.glfw.GLFW.glfwUpdateGamepadMappings;
 
@@ -30,5 +31,13 @@ public class SDL_GameControllerDB_UtilTest {
             throw new IllegalStateException("Unable to initialize GLFW");
         }
         glfwUpdateGamepadMappings(db);
+    }
+
+    @Test
+    public void getSDL_GameControllerDB_ByteBufferTest2() {
+        if (!glfwInit()) {
+            throw new IllegalStateException("Unable to initialize GLFW");
+        }
+        glfwUpdateGamepadMappings();
     }
 }
