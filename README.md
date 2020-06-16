@@ -4,7 +4,7 @@
 
 A maven wrapper of SDL_GameControllerDB.
 
-I will build and deploy it at least every month to catch up SDL_GameControllerDB updates, so if you use this you do not have to renew your gamecontrollerdb.txt everytime.
+I will build and deploy it at least every month to catch up SDL_GameControllerDB updates, so if you use this you do not have to renew your `gamecontrollerdb.txt` everytime.
 
 You can just get the latest version of this library.
 
@@ -13,9 +13,9 @@ That makes things far easier for java users.
 ## gabomdq/SDL_GameControllerDB or p-groarke/SDL_GameControllerDB2?
 I will stay on gabomdq/SDL_GameControllerDB for a while.
 
-If there be soem strong reasons for moving to p-groarke/SDL_GameControllerDB2 then I will do.
+If there be some strong reasons for moving to p-groarke/SDL_GameControllerDB2 then I will do.
 
-Otherwise let me just stay for a while.
+Otherwise, let me just stay for a while.
 
 Right now I will just raise a medium version(1.1.\* to 1.2.\*) to memorise the interesting fight happened(happening) and do nothing else.
 
