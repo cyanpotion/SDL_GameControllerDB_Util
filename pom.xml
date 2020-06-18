@@ -329,7 +329,7 @@
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>9</source>
-                    <target>8</target>
+                    <target>9</target>
                     <meminitial>128m</meminitial>
                     <maxmem>512m</maxmem>
                     <fork>true</fork>
@@ -364,6 +364,8 @@
                             <goal>wget</goal>
                         </goals>
                         <configuration>
+                            <skipCache>true</skipCache>
+                            <overwrite>true</overwrite>
                             <url>
                                 http://raw.githubusercontent.com/gabomdq/SDL_GameControllerDB/master/gamecontrollerdb.txt
                             </url>
