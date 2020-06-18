@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess.cyan_potion</groupId>
     <artifactId>SDL_GameControllerDB_Util</artifactId>
-    <version>1.4.20200616</version>
+    <version>1.5.20200618</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <description>a wrapper for SDL_GameControllerDB
@@ -37,11 +37,25 @@
         <project.reporting.outputEncoding>UTF-8
         </project.reporting.outputEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <java.version>8</java.version>
+        <java.version>9</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <junit-jupiter.version>5.7.0-M1</junit-jupiter.version>
         <lwjgl.version>3.2.3</lwjgl.version>
+        <!---->
+        <!---->
+        <!--maven plugins versions-->
+        <maven-site-plugin.version>3.8.2</maven-site-plugin.version>
+        <maven-project-info-reports-plugin.version>3.0.0
+        </maven-project-info-reports-plugin.version>
+        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+        <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <download-maven-plugin.version>1.6.0</download-maven-plugin.version>
+        <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
     </properties>
 
     <profiles>
@@ -137,6 +151,35 @@
                 <lwjgl.natives>natives-windows-x86</lwjgl.natives>
             </properties>
         </profile>
+        <profile>
+            <id>update</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>versions-maven-plugin</artifactId>
+                        <version>${versions-maven-plugin.version}</version>
+                        <configuration>
+                            <allowSnapshots>false</allowSnapshots>
+                            <excludes>
+                                <exclude>org.slf4j:*</exclude>
+                                <exclude>
+                                    com.xenoamess.cyan_potion:SDL_GameControllerDB_Util
+                                </exclude>
+                            </excludes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>update-properties</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <dependencyManagement>
@@ -215,90 +258,53 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.7.1</version>
+                <version>${maven-site-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${maven-project-info-reports-plugin.version}</version>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${maven-javadoc-plugin.version}</version>
                 <configuration>
-                    <locale>en</locale>
-                    <show>private</show>
-                    <reportOutputDirectory>../javadocs</reportOutputDirectory>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <docencoding>${project.reporting.outputEncoding}
-                    </docencoding>
-                    <additionalJOption>-J-Duser.language=en_US
-                    </additionalJOption>
-
-                    <tags>
-                        <tag>
-                            <name>apiNote</name>
-                            <placement>a</placement>
-                            <head>API Note:</head>
-                        </tag>
-                        <tag>
-                            <name>implSpec</name>
-                            <placement>a</placement>
-                            <head>Implementation Requirements:</head>
-                        </tag>
-                        <tag>
-                            <name>implNote</name>
-                            <placement>a</placement>
-                            <head>Implementation Note:</head>
-                        </tag>
-                        <tag>
-                            <name>param</name>
-                        </tag>
-                        <tag>
-                            <name>return</name>
-                        </tag>
-                        <tag>
-                            <name>throws</name>
-                        </tag>
-                        <tag>
-                            <name>since</name>
-                        </tag>
-                        <tag>
-                            <name>version</name>
-                        </tag>
-                        <tag>
-                            <name>serialData</name>
-                        </tag>
-                        <tag>
-                            <name>see</name>
-                        </tag>
-                    </tags>
-
-                    <source>${maven.compiler.source}
-                    </source>
-                    <!--                    <javadocExecutable>${java.home}/bin/javadoc.exe-->
-                    <!--                    </javadocExecutable>-->
+                    <source>8</source>
+                    <quiet>true</quiet>
+                    <notimestamp>true</notimestamp>
+                    <links>
+                        <link>https://docs.oracle.com/javase/8/docs/api/</link>
+                        <link>http://docs.oracle.com/javaee/6/api/</link>
+                    </links>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true
+                            </addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true
+                            </addDefaultSpecificationEntries>
+                        </manifest>
+                    </archive>
                 </configuration>
-
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <id>create-javadoc-jar</id>
                         <goals>
+                            <goal>javadoc</goal>
                             <goal>jar</goal>
                         </goals>
+                        <phase>package</phase>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>3.0.0-M1</version>
+                <version>${maven-deploy-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>${maven-source-plugin.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -311,7 +317,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <argLine>-Dfile.encoding=UTF-8</argLine>
@@ -320,12 +326,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>${maven.compiler.source}
-                    </source>
-                    <target>${maven.compiler.target}
-                    </target>
+                    <source>9</source>
+                    <target>8</target>
                     <meminitial>128m</meminitial>
                     <maxmem>512m</maxmem>
                     <fork>true</fork>
@@ -336,7 +340,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
+                <version>${maven-gpg-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -351,7 +355,7 @@
                 <!-- https://mvnrepository.com/artifact/com.googlecode.maven-download-plugin/download-maven-plugin -->
                 <groupId>com.googlecode.maven-download-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.4.2</version>
+                <version>${download-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <!-- the wget goal actually binds itself to this phase by default -->
@@ -375,70 +379,6 @@
             </plugin>
         </plugins>
     </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <locale>en</locale>
-                    <show>private</show>
-                    <reportOutputDirectory>../javadocs</reportOutputDirectory>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <docencoding>${project.reporting.outputEncoding}
-                    </docencoding>
-                    <additionalJOption>-J-Duser.language=en_US
-                    </additionalJOption>
-
-                    <tags>
-                        <tag>
-                            <name>apiNote</name>
-                            <placement>a</placement>
-                            <head>API Note:</head>
-                        </tag>
-                        <tag>
-                            <name>implSpec</name>
-                            <placement>a</placement>
-                            <head>Implementation Requirements:</head>
-                        </tag>
-                        <tag>
-                            <name>implNote</name>
-                            <placement>a</placement>
-                            <head>Implementation Note:</head>
-                        </tag>
-                        <tag>
-                            <name>param</name>
-                        </tag>
-                        <tag>
-                            <name>return</name>
-                        </tag>
-                        <tag>
-                            <name>throws</name>
-                        </tag>
-                        <tag>
-                            <name>since</name>
-                        </tag>
-                        <tag>
-                            <name>version</name>
-                        </tag>
-                        <tag>
-                            <name>serialData</name>
-                        </tag>
-                        <tag>
-                            <name>see</name>
-                        </tag>
-                    </tags>
-
-                    <source>${maven.compiler.source}
-                    </source>
-                    <!--                    <javadocExecutable>${java.home}/bin/javadoc.exe-->
-                    <!--                    </javadocExecutable>-->
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
-
 
     <distributionManagement>
         <snapshotRepository>
@@ -452,9 +392,5 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/
             </url>
         </repository>
-        <!--        <repository>-->
-        <!--            <id>com.xenoamess</id>-->
-        <!--            <url>http://xenoamess.com:8081/repository/maven-releases/</url>-->
-        <!--        </repository>-->
     </distributionManagement>
 </project>

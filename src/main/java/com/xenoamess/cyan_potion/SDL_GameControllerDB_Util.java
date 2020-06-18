@@ -1,7 +1,5 @@
 package com.xenoamess.cyan_potion;
 
-import org.lwjgl.system.NativeType;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -11,10 +9,6 @@ import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.file.Files;
-
-import static org.lwjgl.system.Checks.CHECKS;
-import static org.lwjgl.system.Checks.checkNT1;
-import static org.lwjgl.system.MemoryUtil.memAddress;
 
 /**
  * @author XenoAmess
@@ -61,7 +55,7 @@ public class SDL_GameControllerDB_Util {
     public static File getSDL_GameControllerDB_TempFile() {
         File res = null;
         try {
-            Files.createTempFile("SDL_GameControllerDB_Util_gamecontrollerdb", null).toAbsolutePath().toFile();
+            res = Files.createTempFile("SDL_GameControllerDB_Util_gamecontrollerdb", null).toAbsolutePath().toFile();
             try (FileWriter fileWriter = new FileWriter(res)) {
                 fileWriter.write(getSDL_GameControllerDB_String());
             }
@@ -74,11 +68,15 @@ public class SDL_GameControllerDB_Util {
     /**
      * Adds the specified SDL_GameControllerDB gamepad mappings.
      *
-     * <p>This function parses the specified ASCII encoded string and updates the internal list with latest version of <a target="_blank" href="https://github.com/gabomdq/SDL_GameControllerDB/blob/master/gamecontrollerdb.txt">gamecontrollerdb</a></p>
+     * <p>This function parses the specified ASCII encoded string and updates the internal list with latest version
+     * of
+     * <a target="_blank" href="https://github.com/gabomdq/SDL_GameControllerDB/blob/master/gamecontrollerdb.txt">gamecontrollerdb</a></p>
      *
-     * <p>See <a target="_blank" href="http://www.glfw.org/docs/latest/input.html#gamepad_mapping">gamepad_mapping</a> for a description of the format.</p>
+     * <p>See <a target="_blank" href="http://www.glfw.org/docs/latest/input.html#gamepad_mapping">gamepad_mapping</a>
+     * for a description of the format.</p>
      *
-     * <p>If there is already a gamepad mapping for a given GUID in the internal list, it will be replaced by the one passed to this function. If the library is
+     * <p>If there is already a gamepad mapping for a given GUID in the internal list, it will be replaced by the one
+     * passed to this function. If the library is
      * terminated and re-initialized the internal list will revert to the built-in default.</p>
      *
      * <p>This function must only be called from the main thread.</p>
@@ -94,8 +92,7 @@ public class SDL_GameControllerDB_Util {
     }
 
     private static URL getURL(String resourceFilePath) {
-        final URL res = SDL_GameControllerDB_Util.class.getResource(resourceFilePath);
-        return res;
+        return SDL_GameControllerDB_Util.class.getResource(resourceFilePath);
     }
 
     private static String loadFile(String resourceFilePath) {
@@ -104,7 +101,7 @@ public class SDL_GameControllerDB_Util {
                 BufferedReader bufferedReader =
                         new BufferedReader(new InputStreamReader(getURL(resourceFilePath).openStream()))
         ) {
-            final StringBuffer sb = new StringBuffer();
+            final StringBuilder sb = new StringBuilder();
             String tmp;
             while (true) {
                 tmp = bufferedReader.readLine();
