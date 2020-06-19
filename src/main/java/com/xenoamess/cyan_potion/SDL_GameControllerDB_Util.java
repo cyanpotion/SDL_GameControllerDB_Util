@@ -11,58 +11,44 @@ import java.nio.ByteOrder;
 import java.nio.file.Files;
 
 /**
+ * @deprecated use {@link com.xenoamess.cyan_potion.sdl_game_controller_db_util.SDL_GameControllerDB_Util} instead.
  * @author XenoAmess
  */
+@Deprecated
 public class SDL_GameControllerDB_Util {
-    private static String SDL_GameControllerDB_String = null;
-    private static ByteBuffer SDL_GameControllerDB_ByteBuffer = null;
-    public static final String SDL_GameControllerDB_FilePath = "/gamecontrollerdb.txt";
 
     /**
      * get gamecontrollerdb.txt's content as String
      *
+     * @deprecated use {@link com.xenoamess.cyan_potion.sdl_game_controller_db_util.SDL_GameControllerDB_Util#getSDL_GameControllerDB_String()} instead
      * @return gamecontrollerdb.txt's content as String
      */
+    @Deprecated
     public static String getSDL_GameControllerDB_String() {
-        if (SDL_GameControllerDB_String == null) {
-            SDL_GameControllerDB_String = loadFile(SDL_GameControllerDB_FilePath);
-        }
-        return SDL_GameControllerDB_String;
+        return com.xenoamess.cyan_potion.sdl_game_controller_db_util.SDL_GameControllerDB_Util.getSDL_GameControllerDB_String();
     }
 
     /**
      * get gamecontrollerdb.txt's content as ByteBuffer
      *
+     * @deprecated use {@link com.xenoamess.cyan_potion.sdl_game_controller_db_util.SDL_GameControllerDB_Util#getSDL_GameControllerDB_ByteBuffer()} instead
      * @return gamecontrollerdb.txt's content as ByteBuffer
      */
+    @Deprecated
     public static ByteBuffer getSDL_GameControllerDB_ByteBuffer() {
-        if (SDL_GameControllerDB_ByteBuffer == null) {
-            getSDL_GameControllerDB_String();
-            SDL_GameControllerDB_ByteBuffer = createByteBuffer(SDL_GameControllerDB_String.length() + 4);
-            SDL_GameControllerDB_ByteBuffer.put(SDL_GameControllerDB_String.getBytes());
-            SDL_GameControllerDB_ByteBuffer.put((byte) (0));
-            SDL_GameControllerDB_ByteBuffer.flip();
-        }
-        return SDL_GameControllerDB_ByteBuffer;
+        return com.xenoamess.cyan_potion.sdl_game_controller_db_util.SDL_GameControllerDB_Util.getSDL_GameControllerDB_ByteBuffer();
     }
 
     /**
      * get gamecontrollerdb.txt's content and generate a temp file with it.
      * notice that once you after you used it you'd better delete it.
      *
+     * @deprecated use {@link com.xenoamess.cyan_potion.sdl_game_controller_db_util.SDL_GameControllerDB_Util#getSDL_GameControllerDB_TempFile()} instead
      * @return gamecontrollerdb.txt's content and generate a temp file with it.
      */
+    @Deprecated
     public static File getSDL_GameControllerDB_TempFile() {
-        File res = null;
-        try {
-            res = Files.createTempFile("SDL_GameControllerDB_Util_gamecontrollerdb", null).toAbsolutePath().toFile();
-            try (FileWriter fileWriter = new FileWriter(res)) {
-                fileWriter.write(getSDL_GameControllerDB_String());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return res;
+        return com.xenoamess.cyan_potion.sdl_game_controller_db_util.SDL_GameControllerDB_Util.getSDL_GameControllerDB_TempFile();
     }
 
     /**
@@ -83,49 +69,11 @@ public class SDL_GameControllerDB_Util {
      *
      * <p>This function will not use internet, so don't be afraid.</p>
      *
+     * @deprecated use {@link com.xenoamess.cyan_potion.sdl_game_controller_db_util.SDL_GameControllerDB_Util#glfwUpdateGamepadMappings()} instead
      * @return {@code true}, or {@code false} if an error occurred
-     *
-     * @since version 3.3
      */
+    @Deprecated
     public static boolean glfwUpdateGamepadMappings() {
-        return org.lwjgl.glfw.GLFW.glfwUpdateGamepadMappings(getSDL_GameControllerDB_ByteBuffer());
-    }
-
-    private static URL getURL(String resourceFilePath) {
-        return SDL_GameControllerDB_Util.class.getResource(resourceFilePath);
-    }
-
-    private static String loadFile(String resourceFilePath) {
-        String res = "";
-        try (
-                BufferedReader bufferedReader =
-                        new BufferedReader(new InputStreamReader(getURL(resourceFilePath).openStream()))
-        ) {
-            final StringBuilder sb = new StringBuilder();
-            String tmp;
-            while (true) {
-                tmp = bufferedReader.readLine();
-                if (tmp == null) {
-                    break;
-                }
-                sb.append(tmp);
-                sb.append("\n");
-            }
-            res = sb.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return res;
-    }
-
-    /**
-     * Special Notice: this function is copied from LWJGL.
-     * Allocates a direct native-ordered bytebuffer with the specified capacity.
-     *
-     * @param capacity The capacity, in bytes
-     * @return a ByteBuffer
-     */
-    private static ByteBuffer createByteBuffer(int capacity) {
-        return ByteBuffer.allocateDirect(capacity).order(ByteOrder.nativeOrder());
+        return com.xenoamess.cyan_potion.sdl_game_controller_db_util.SDL_GameControllerDB_Util.glfwUpdateGamepadMappings();
     }
 }

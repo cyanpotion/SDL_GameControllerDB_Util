@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess.cyan_potion</groupId>
     <artifactId>SDL_GameControllerDB_Util</artifactId>
-    <version>1.6.20200618</version>
+    <version>1.7.20200620</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <description>a wrapper for SDL_GameControllerDB
@@ -33,9 +33,9 @@
     </scm>
 
     <parent>
-        <groupId>com.meterware</groupId>
+        <groupId>com.xenoamess</groupId>
         <artifactId>multirelease-parent</artifactId>
-        <version>1.0</version>
+        <version>1.2.0</version>
     </parent>
 
     <properties>
@@ -156,35 +156,6 @@
             <properties>
                 <lwjgl.natives>natives-windows-x86</lwjgl.natives>
             </properties>
-        </profile>
-        <profile>
-            <id>update</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>versions-maven-plugin</artifactId>
-                        <version>${versions-maven-plugin.version}</version>
-                        <configuration>
-                            <allowSnapshots>false</allowSnapshots>
-                            <excludes>
-                                <exclude>org.slf4j:*</exclude>
-                                <exclude>
-                                    com.xenoamess.cyan_potion:SDL_GameControllerDB_Util
-                                </exclude>
-                            </excludes>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>initialize</phase>
-                                <goals>
-                                    <goal>update-properties</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
     </profiles>
 
@@ -328,61 +299,6 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <argLine>-Dfile.encoding=UTF-8</argLine>
                 </configuration>
-            </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-compiler-plugin</artifactId>-->
-<!--                <version>${maven-compiler-plugin.version}</version>-->
-<!--                <configuration>-->
-<!--                    <source>${java.version}</source>-->
-<!--                    <target>${java.version}</target>-->
-<!--                    <meminitial>128m</meminitial>-->
-<!--                    <maxmem>512m</maxmem>-->
-<!--                    <fork>true</fork>-->
-<!--                    <compilerVersion>${java.version}</compilerVersion>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>compile-java-8</id>-->
-<!--                        <goals>-->
-<!--                            <goal>compile</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <source>1.8</source>-->
-<!--                            <target>1.8</target>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>compile-java-9</id>-->
-<!--                        <phase>compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>compile</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <compileSourceRoots>-->
-<!--                                <compileSourceRoot>-->
-<!--                                    ${project.basedir}/src/main/java9-->
-<!--                                </compileSourceRoot>-->
-<!--                            </compileSourceRoots>-->
-<!--                            <multiReleaseOutput>true</multiReleaseOutput>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-            <!-- GPG mvn clean deploy -P release -Dgpg.passphrase=YourPassphase -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>${maven-gpg-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <!-- https://mvnrepository.com/artifact/com.googlecode.maven-download-plugin/download-maven-plugin -->
