@@ -88,7 +88,11 @@ public class SDL_GameControllerDB_Util {
      * @since version 3.3
      */
     public static boolean glfwUpdateGamepadMappings() {
-        return org.lwjgl.glfw.GLFW.glfwUpdateGamepadMappings(getSDL_GameControllerDB_ByteBuffer());
+        try {
+            return org.lwjgl.glfw.GLFW.glfwUpdateGamepadMappings(getSDL_GameControllerDB_ByteBuffer());
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private static URL getURL(String resourceFilePath) {
