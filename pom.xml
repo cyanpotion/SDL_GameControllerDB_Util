@@ -8,8 +8,7 @@
     <version>1.8.20200720</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
-    <description>a wrapper for SDL_GameControllerDB
-    </description>
+    <description>a wrapper for SDL_GameControllerDB</description>
     <url>https://github.com/cyanpotion/SDL_GameControllerDB_Util</url>
     <licenses>
         <license>
