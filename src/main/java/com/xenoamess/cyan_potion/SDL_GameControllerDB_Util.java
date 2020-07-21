@@ -1,14 +1,7 @@
 package com.xenoamess.cyan_potion;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.file.Files;
 
 /**
  * @deprecated use {@link com.xenoamess.cyan_potion.sdl_game_controller_db_util.SDL_GameControllerDB_Util} instead.
