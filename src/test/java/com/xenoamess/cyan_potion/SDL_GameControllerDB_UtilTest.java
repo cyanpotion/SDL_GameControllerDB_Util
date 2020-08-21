@@ -1,18 +1,15 @@
 package com.xenoamess.cyan_potion;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
-
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import static com.xenoamess.cyan_potion.SDL_GameControllerDB_Util.getSDL_GameControllerDB_String;
 import static com.xenoamess.cyan_potion.SDL_GameControllerDB_Util.glfwUpdateGamepadMappings;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.lwjgl.glfw.GLFW.glfwInit;
 import static org.lwjgl.glfw.GLFW.glfwUpdateGamepadMappings;
@@ -25,8 +22,8 @@ public class SDL_GameControllerDB_UtilTest {
     @Test
     public void getSDL_GameControllerDB_StringTest() {
         String db = getSDL_GameControllerDB_String();
-        System.out.println(db);
         Assertions.assertNotNull(db);
+        Assertions.assertTrue(db.length() >= 1000);
         Assertions.assertNotEquals(0, db.length());
     }
 
@@ -67,8 +64,10 @@ public class SDL_GameControllerDB_UtilTest {
                 sb.append(tmp);
                 sb.append("\n");
             }
-            System.out.println(sb.toString());
-            assertNotEquals("", sb.toString());
+            Assertions.assertArrayEquals(
+                    sb.toString().split("\\s"),
+                    SDL_GameControllerDB_Util.getSDL_GameControllerDB_String().split("\\s")
+            );
         } catch (IOException e) {
             e.printStackTrace();
         }
