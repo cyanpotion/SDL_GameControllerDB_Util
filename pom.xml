@@ -44,7 +44,7 @@
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <java.version>1.8</java.version>
         <base.java.version>1.8</base.java.version>
-        <junit-jupiter.version>5.7.0-M1</junit-jupiter.version>
+        <junit-jupiter.version>5.7.0-RC1</junit-jupiter.version>
         <lwjgl.version>3.2.3</lwjgl.version>
         <!---->
         <!---->
