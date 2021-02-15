@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess.cyan_potion</groupId>
     <artifactId>SDL_GameControllerDB_Util</artifactId>
-    <version>1.8.20210209</version>
+    <version>1.8.20210216</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <description>a wrapper for SDL_GameControllerDB</description>
