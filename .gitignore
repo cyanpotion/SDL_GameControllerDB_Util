@@ -52,5 +52,5 @@ replay_pid*
 /log.txt
 
 /logs
-*.log
 *.MF
+*.versionsBackup
