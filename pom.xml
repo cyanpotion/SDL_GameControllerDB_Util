@@ -44,6 +44,16 @@
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <java.version>1.8</java.version>
         <base.java.version>1.8</base.java.version>
+        <enforce.activate>true</enforce.activate>
+        <!---->
+        <!---->
+        <!--checkstyle versions-->
+        <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
+        <checkstyle.version>8.40</checkstyle.version>
+        <checkstyle.configdir>src/site/resources/checkstyle</checkstyle.configdir>
+        <!---->
+        <!---->
+        <!--dependencies versions-->
         <junit-jupiter.version>5.8.0-M1</junit-jupiter.version>
         <lwjgl.version>3.2.3</lwjgl.version>
         <!---->
@@ -156,6 +166,60 @@
                 <lwjgl.natives>natives-windows-x86</lwjgl.natives>
             </properties>
         </profile>
+        <profile>
+            <id>enforce</id>
+            <activation>
+                <property>
+                    <name>enforce.activate</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <version>${maven-enforcer-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <rules>
+                                <dependencyConvergence/>
+                                <banDuplicatePomDependencyVersions/>
+                            </rules>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <version>${checkstyle.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <configLocation>${checkstyle.configdir}/checkstyle.xml</configLocation>
+                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                            <enableRulesSummary>false</enableRulesSummary>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.puppycrawl.tools</groupId>
+                                <artifactId>checkstyle</artifactId>
+                                <version>${checkstyle.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <dependencyManagement>
@@ -243,24 +307,6 @@
                         <phase>generate-resources</phase>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>${maven-enforcer-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <rules>
-                        <dependencyConvergence/>
-                        <banDuplicatePomDependencyVersions/>
-                    </rules>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
