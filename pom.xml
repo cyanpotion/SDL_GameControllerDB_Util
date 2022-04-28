@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess.cyan_potion</groupId>
     <artifactId>SDL_GameControllerDB_Util</artifactId>
-    <version>1.9.20220121</version>
+    <version>1.9.20220429</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <description>a wrapper for SDL_GameControllerDB</description>
@@ -67,7 +67,7 @@
         <enforce.activate>true</enforce.activate>
         <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
         <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
-        <checkstyle.version>10.2</checkstyle.version>
+        <checkstyle.version>9.3</checkstyle.version>
         <checkstyle.configdir>src/site/resources/checkstyle</checkstyle.configdir>
     </properties>
 
