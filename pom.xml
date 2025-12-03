@@ -48,7 +48,7 @@
         <!---->
         <!--dependencies versions-->
         <junit-jupiter.version>5.13.4</junit-jupiter.version>
-        <lwjgl.version>3.3.4</lwjgl.version>
+        <lwjgl.version>3.3.6</lwjgl.version>
         <!---->
         <!---->
         <!--maven plugins versions-->
