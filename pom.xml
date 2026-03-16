@@ -397,7 +397,7 @@
                 <!-- https://mvnrepository.com/artifact/com.googlecode.maven-download-plugin/download-maven-plugin -->
                 <groupId>com.googlecode.maven-download-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.9.20260316</version>
+                <version>1.13.0</version>
                 <executions>
                     <execution>
                         <!-- the wget goal actually binds itself to this phase by default -->
