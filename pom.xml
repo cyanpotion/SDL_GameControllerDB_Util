@@ -374,7 +374,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>1.9.20260316</version>
+                <version>3.4.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
