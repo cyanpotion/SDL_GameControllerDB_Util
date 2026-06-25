@@ -1,25 +1,36 @@
 version: 2
 updates:
-  # Enable version updates for Maven
   - package-ecosystem: "maven"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "Asia/Shanghai"
+    target-branch: "master"
     open-pull-requests-limit: 10
     reviewers:
       - "XenoAmess"
     commit-message:
-      prefix: "deps"
-      include: "scope"
+      prefix: "build(deps)"
+      prefix-development: "build(deps-dev)"
+    labels:
+      - "dependencies"
+      - "java"
 
-  # Enable version updates for GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "Asia/Shanghai"
+    target-branch: "master"
     open-pull-requests-limit: 10
     reviewers:
       - "XenoAmess"
     commit-message:
       prefix: "ci"
-      include: "scope"
+    labels:
+      - "dependencies"
+      - "github_actions"
