@@ -9,6 +9,12 @@ on:
     - cron: '0 2 * * *'
   workflow_dispatch:
     # Allow manual trigger
+    inputs:
+      force:
+        description: 'Force deploy even if version already matches today'
+        type: boolean
+        default: false
+        required: false
 
 permissions:
   contents: write
@@ -115,7 +121,7 @@ jobs:
           git push
       
       - name: Deploy to Maven Central
-        if: steps.version_check.outputs.version_update_needed == 'true'
+        if: steps.version_check.outputs.version_update_needed == 'true' || inputs.force == 'true'
         run: |
           ./mvnw deploy -Pcentral -DskipTests \
             -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }}
@@ -134,7 +140,7 @@ jobs:
           retention-days: 30
       
       - name: Create Release
-        if: steps.version_check.outputs.version_update_needed == 'true'
+        if: steps.version_check.outputs.version_update_needed == 'true' || inputs.force == 'true'
         uses: softprops/action-gh-release@v3
         with:
           tag_name: v${{ steps.version_check.outputs.new_version }}
