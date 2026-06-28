@@ -430,7 +430,7 @@
                             <skipCache>true</skipCache>
                             <overwrite>true</overwrite>
                             <url>
-                                http://raw.githubusercontent.com/gabomdq/SDL_GameControllerDB/master/gamecontrollerdb.txt
+                                https://raw.githubusercontent.com/mdqinc/SDL_GameControllerDB/master/gamecontrollerdb.txt
                             </url>
                             <outputFileName>gamecontrollerdb.txt
                             </outputFileName>
