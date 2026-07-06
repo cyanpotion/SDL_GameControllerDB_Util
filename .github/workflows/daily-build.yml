@@ -58,8 +58,13 @@ jobs:
       - name: Check for upstream changes
         id: upstream
         run: |
-          curl -L -o /tmp/gamecontrollerdb.txt.new \
+          curl -L --fail -o /tmp/gamecontrollerdb.txt.new \
             "https://raw.githubusercontent.com/mdqinc/SDL_GameControllerDB/master/gamecontrollerdb.txt"
+
+          if [ ! -s /tmp/gamecontrollerdb.txt.new ]; then
+            echo "Failed to download gamecontrollerdb.txt" >&2
+            exit 1
+          fi
 
           if [ ! -f "src/main/resources/gamecontrollerdb.txt" ]; then
             echo "No local baseline found; treating as changed"
@@ -79,6 +84,7 @@ jobs:
           exit 0
 
       - name: Prepare new version
+        if: steps.upstream.outputs.changed == 'true' || inputs.force == true
         id: version
         run: |
           TODAY=$(date +'%Y%m%d')
@@ -88,6 +94,7 @@ jobs:
           echo "date=${TODAY}" >> "$GITHUB_OUTPUT"
 
       - name: Update baseline and pom.xml version
+        if: steps.upstream.outputs.changed == 'true' || inputs.force == true
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
@@ -105,6 +112,7 @@ jobs:
           git push
 
       - name: Build and deploy with Maven
+        if: steps.upstream.outputs.changed == 'true' || inputs.force == true
         run: |
           ./mvnw clean deploy -Pcentral -DskipTests \
             -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }}
@@ -114,6 +122,7 @@ jobs:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Upload artifacts
+        if: steps.upstream.outputs.changed == 'true' || inputs.force == true
         uses: actions/upload-artifact@v7
         with:
           name: build-artifacts-${{ steps.version.outputs.date }}
@@ -123,6 +132,7 @@ jobs:
           retention-days: 30
 
       - name: Create Release
+        if: steps.upstream.outputs.changed == 'true' || inputs.force == true
         uses: softprops/action-gh-release@v3
         with:
           tag_name: v${{ steps.version.outputs.new_version }}
